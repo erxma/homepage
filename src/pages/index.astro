@@ -1,5 +1,7 @@
 ---
-
+import "@styles/global.css";
+import Header from "../components/Header.astro";
+const pageTitle = "erxma";
 ---
 
 <html lang="en">
@@ -7,10 +9,58 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Header />
+		<h1 id="title">&hellip; &hellip;</h1>
+
+		<div class="container">
+			<nav class="index-nav">
+				<a href="/">home</a>
+				<a href="/portfolio">portfolio</a>
+			</nav>
+		</div>
 	</body>
 </html>
+
+<style>
+	#title {
+		font-size: 5em;
+		text-align: center;
+	}
+
+	.container {
+		display: flex;
+		justify-content: center;
+	}
+
+	.index-nav {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 2em;
+	}
+
+	.index-nav a {
+		font-size: x-large;
+	}
+
+	.index-nav a {
+		color: var(--text-default);
+		text-decoration: underline;
+		text-decoration-thickness: 0.1em;
+		text-underline-offset: 0.4em;
+	}
+
+	:global(.dark) .index-nav a {
+		color: var(--text-default-dark);
+	}
+
+	.index-nav a:hover,
+	.index-nav a:active {
+		text-decoration-thickness: 0.2em;
+		text-underline-offset: 0.35em;
+		cursor: pointer;
+	}
+</style>

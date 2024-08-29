@@ -1,0 +1,46 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import "@styles/global.css";
+---
+
+<header>
+    <nav>
+        <a href="/">
+            <img class="icon invert-dark" src="/icons/home.svg" alt="Home" />
+        </a>
+        <a href="/portfolio">
+            <img
+                class="icon invert-dark"
+                src="/icons/folder.svg"
+                alt="Portfolio"
+                style="object-fit: cover; scale: 140%"
+            />
+        </a>
+        <a href="/things">
+            <img
+                class="icon invert-dark"
+                src="/icons/star-splash.svg"
+                alt="Miscellaneous things"
+            />
+        </a>
+    </nav>
+    <ThemeToggle />
+</header>
+
+<style>
+    nav,
+    nav a {
+        display: flex;
+        align-items: center;
+        column-gap: 1em;
+    }
+
+    img {
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+    header {
+        display: flex;
+        justify-content: right;
+    }
+</style>

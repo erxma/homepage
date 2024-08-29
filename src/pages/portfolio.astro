@@ -1,0 +1,312 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PortfolioItem from "@components/PortfolioItem.astro";
+import raftscopeImg from "@assets/raftscope.png";
+import siteImg from "@assets/site.png";
+import rtPbrImg1 from "@assets/realtime-pbr-1.png";
+import rustLogo from "@assets/logos/rust-logo.svg";
+import tokioLogo from "@assets/logos/tokio-logo.svg";
+import astroLogo from "@assets/logos/astro-icon-dark.svg";
+import tsLogo from "@assets/logos/ts-logo-128.svg";
+import openglLogo from "@assets/logos/opengl-logo.svg";
+import cppLogo from "@assets/logos/cpp-logo.svg";
+import pythonLogo from "@assets/logos/python-logo.svg";
+import { Image } from "astro:assets";
+
+const pageTitle = "erxma - Portfolio";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <h1>Projects</h1>
+    <p>
+        <img
+            src="/icons/school-hat.svg"
+            alt="Icon of graduation cap"
+            title="(Classwork)"
+            class="invert-dark"
+            id="hat-icon"
+            draggable="false"
+        /> This icon indicates a university project.
+    </p>
+    <ul role="list">
+        <li>
+            <PortfolioItem
+                name="Physically Based Rendering Raytracer"
+                img={{
+                    src: "https://picsum.photos/seed/bean/600/400",
+                    alt: "Placeholder image",
+                }}
+            >
+                <p>
+                    Reimplementation of the raytracer described in the book <a
+                        href="https://pbr-book.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i>Physically Based Rendering </i>(Pharr, Jakob,
+                        Humphreys)</a
+                    >. Originally described in C++, remade in Rust. Long term
+                    personal project for learning Rust and PBR.
+                </p>
+                <p>
+                    The plan is to have implementations both from scratch and
+                    existing crates for low level internals like math
+                    structures, memory management.
+                </p>
+                <p>(Unfortunately not outputting meaningful images yet.)</p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.rust-lang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={rustLogo}
+                            alt="Rust logo"
+                            style="object-fit: cover; scale: 140%"
+                        />
+                    </a>
+                    <div class="tech-logo">
+                        <Image
+                            class="invert-dark"
+                            src={cppLogo}
+                            alt="C++ logo"
+                        />
+                    </div>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Raft distributed consensus algorithm implementation"
+                img={{
+                    src: raftscopeImg,
+                    alt: "A still from an interactive visualization of the Raft algorithm.",
+                    loading: "eager",
+                }}
+                ,
+                isClasswork={true}
+                attribution=`<a
+                    href="https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/"
+                    target="_blank"
+                    rel="noopener noreferrer">Rust logo</a
+                > owned by the Rust Foundation, licensed under <a
+                    href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">CC BY</a
+                >.`
+            >
+                <p>
+                    Implementation of the Raft algorithm, utilizing async I/O.
+                </p>
+                <p>
+                    In testing, no correctness errors were found, and speed was
+                    above average.
+                </p>
+                <p>
+                    Assignment was tested under simulated conditions over local
+                    instance processes and ports, but the code is ready for
+                    running over real networks.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.rust-lang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={rustLogo}
+                            alt="Rust logo"
+                            style="object-fit: cover; scale: 140%"
+                        />
+                    </a>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.tokio.rs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={tokioLogo}
+                            alt="Tokio logo"
+                        />
+                    </a>
+                </div>
+                <p>
+                    Visualization not mine; screenshot from <a
+                        href="https://raft.github.io/"
+                        target="_blank"
+                        rel="noopener noreferrer">raft.github.io</a
+                    >, which uses <a
+                        href="https://github.com/ongardie/raftscope"
+                        target="_blank"
+                        rel="noopener noreferrer">ongardie/raftscope</a
+                    >.
+                </p>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="This site"
+                img={{
+                    src: siteImg,
+                    alt: "Recursively nesting screenshot of this very part of the site",
+                }}
+            >
+                <p>
+                    Mainly uses Astro, including some manual optimization
+                    features. Layout and CSS designed from scratch. Contains
+                    almost no client-side JS except for the theme toggle. Size
+                    responsive, follows accessibility guidelines.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://astro.build"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={astroLogo}
+                            alt="Astro logo"
+                        />
+                    </a>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.typescriptlang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={tsLogo}
+                            alt="TypeScript logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Real-Time Physically Based Rendering (PBR)"
+                img={{
+                    src: rtPbrImg1,
+                    alt: "Screenshot of a realistic 3D render of a revolver. The program has a panel for adjusting parameters.",
+                }}
+                isClasswork={true}
+                attribution=`OpenGL® and the oval logo are trademarks or registered
+                    trademarks of Hewlett Packard Enterprise in the United
+                    States and/or other countries worldwide.`
+            >
+                <p>
+                    If included on the abbr opening tag, the title must be a
+                    full expansion of the abbreviation or acronym. Instead of
+                    using title, when possible, provide an expansion of the
+                    abbreviation or acronym in plain text on first use, using
+                    the abbr to mark up the abbreviation. This enables all users
+                    know what name or term the abbreviation or acronym shortens
+                    while providing a hint to user agents on how to announce the
+                    content.
+                </p>
+                <div class="techs-used">
+                    <div class="tech-logo">
+                        <Image
+                            class="invert-dark"
+                            src={cppLogo}
+                            alt="C++ logo"
+                        />
+                    </div>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.opengl.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={openglLogo}
+                            alt="OpenGL logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Secure Messaging Protocol"
+                isClasswork={true}
+                img={{
+                    src: "https://picsum.photos/seed/nut/600/400",
+                    alt: "Placeholder image",
+                }}
+            >
+                <p>
+                    Design and implementation of a secure messaging system
+                    without the use of existing TLS functions, as well as
+                    analysis of the security properties of our and other teams'
+                    designs.
+                </p>
+                <p>
+                    Message content is sent P2P, while a central server is used
+                    for authentication and bootstrapping user discovery.
+                </p>
+                <p>
+                    The system ; no critical flaws or unintentional weaknesses
+                    discovered in class critique.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.python.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={pythonLogo}
+                            alt="Python logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+        margin: 20px auto;
+    }
+
+    .techs-used {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 1em;
+    }
+
+    .tech-logo {
+        height: 2.5rem;
+        min-width: 2.5rem;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    #hat-icon {
+        height: 1em;
+        width: 1em;
+        scale: 170%;
+    }
+</style>

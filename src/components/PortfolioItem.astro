@@ -1,0 +1,84 @@
+---
+import "@styles/global.css";
+import { Image } from "astro:assets";
+
+interface Props {
+    name: string;
+    img: {
+        src: ImageMetadata | string;
+        alt: string;
+        [attr: string]: any;
+    };
+    isClasswork?: boolean;
+    attribution?: string;
+}
+
+const { name, img, isClasswork = false, attribution } = Astro.props;
+const { src: imgSrc, alt: imgAlt, ...attrs } = img;
+---
+
+<article>
+    <div>
+        <h2>
+            {name}
+            {
+                isClasswork && (
+                    <img
+                        src="/icons/school-hat.svg"
+                        alt="Icon of graduation cap"
+                        title="(Classwork)"
+                        class="invert-dark"
+                        id="hat-icon"
+                        draggable="false"
+                    />
+                )
+            }
+        </h2>
+        <slot />
+        {attribution && <p class="attribution" set:html={attribution} />}
+    </div>
+
+    {
+        typeof img.src === "string" ? (
+            <img class="main-img" src={img.src} alt={img.alt} {...attrs} />
+        ) : (
+            <Image class="main-img" src={img.src} alt={img.alt} {...attrs} />
+        )
+    }
+</article>
+
+<style>
+    article {
+        padding: 1.5em;
+
+        outline: 2px solid #555;
+        border-radius: 0.6rem;
+        background-color: var(--card-bg-color);
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+    }
+
+    .main-img {
+        border-radius: 5px;
+        width: 600px;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        align-self: center;
+    }
+
+    h2 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        column-gap: 0.3em;
+    }
+
+    #hat-icon {
+        height: 1em;
+        width: 1em;
+        scale: 170%;
+    }
+</style>
