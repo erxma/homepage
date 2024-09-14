@@ -1,6 +1,6 @@
 ---
-import Header from "../components/Header.astro";
 import "@styles/global.css";
+import Header from "../components/Header.astro";
 
 const { pageTitle } = Astro.props;
 ---
@@ -11,6 +11,11 @@ const { pageTitle } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <title>{pageTitle}</title>
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link
+            href="https://fonts.bunny.net/css?family=lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <Header />
