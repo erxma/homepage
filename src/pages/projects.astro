@@ -1,0 +1,329 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PortfolioItem from "@components/PortfolioItem.astro";
+import pbrtRender from "@assets/pbrt-render.png";
+import raftscopeImg from "@assets/raftscope.png";
+import siteImg from "@assets/site.png";
+import rtPbrImg1 from "@assets/realtime-pbr-1.png";
+import netsecDesign from "@assets/netsec-project.png";
+import rustLogo from "@assets/logos/rust-logo.svg";
+import tokioLogo from "@assets/logos/tokio-logo.svg";
+import astroLogo from "@assets/logos/astro-icon-dark.svg";
+import tsLogo from "@assets/logos/ts-logo-128.svg";
+import openglLogo from "@assets/logos/opengl-logo.svg";
+import cppLogo from "@assets/logos/cpp-logo.svg";
+import pythonLogo from "@assets/logos/python-logo.svg";
+import { Image } from "astro:assets";
+
+const pageTitle = "erxma - Portfolio";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <h1>A few select projects...</h1>
+    <ul role="list">
+        <li>
+            <PortfolioItem
+                name="Physically Based Rendering Raytracer"
+                img={{
+                    src: pbrtRender,
+                    alt: "PBR render of a simple scene, showing balls of different materials under sunlight",
+                    loading: "eager",
+                    caption:
+                        "Produced with my implementation. A few details: Simple path tracing integrator (max depth 5), independent sampler, Gaussian reconstruction filter, 400px × 400px, 256 samples/pixel",
+                }}
+            >
+                <p>
+                    Work-in-progress reimplementation of the raytracer described
+                    in the book <a
+                        href="https://pbr-book.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i>Physically Based Rendering </i>(Pharr, Jakob,
+                        Humphreys)</a
+                    >. Originally described in C++, remade in Rust, with some
+                    significant redesigns to better fit Rust conventions (e.g.
+                    less inheritance), and some personal opinion. Long term
+                    personal project for learning Rust and PBR.
+                </p>
+                <p>
+                    Since it's a learning project, the goal is to eventually
+                    implement from scratch many of the low level internals like
+                    math structures, memory management, maybe concurrency, to
+                    replace and compare with existing crates. I started with the
+                    basic math library (Vec3, Transform, etc.)...which was
+                    probably one of the hardest to start with when it came to
+                    implementation design.
+                </p>
+                <p>
+                    <a href="https://github.com/erxma/pbrt-rs"
+                        >Source repo (GitHub)</a
+                    >
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.rust-lang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={rustLogo}
+                            alt="Rust logo"
+                            style="object-fit: cover; scale: 140%"
+                            loading="eager"
+                        />
+                    </a>
+                    <div class="tech-logo">
+                        <Image
+                            class="invert-dark"
+                            src={cppLogo}
+                            alt="C++ logo"
+                            loading="eager"
+                        />
+                    </div>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Raft distributed consensus algorithm implementation (classwork)"
+                img={{
+                    src: raftscopeImg,
+                    alt: "A still from an interactive visualization of the Raft algorithm.",
+                }}
+                ,
+                attribution=`<a
+                    href="https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/"
+                    target="_blank"
+                    rel="noopener noreferrer">Rust logo</a
+                > owned by the Rust Foundation, licensed under <a
+                    href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">CC BY</a
+                >.`
+            >
+                <p>
+                    Implementation of the Raft algorithm, utilizing async I/O.
+                    Final project for Networks & Distributed Systems.
+                </p>
+                <p>
+                    <a
+                        href="https://raft.github.io/"
+                        target="_blank"
+                        rel="noopener noreferrer">Raft</a
+                    > is a distributed algorithm for achieving consistency and partition/fault
+                    tolerance for systems with replicated state machines, via <a
+                        href="https://en.wikipedia.org/wiki/Consensus_(computer_science)"
+                        target="_blank"
+                        rel="noopener noreferrer">consensus</a
+                    >. It's similar to but simpler than Paxos.
+                </p>
+                <p>
+                    Assignment was tested under simulated conditions over local
+                    instance processes and ports, but the code is ready for
+                    running over real networks.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.rust-lang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={rustLogo}
+                            alt="Rust logo"
+                            style="object-fit: cover; scale: 140%"
+                        />
+                    </a>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.tokio.rs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={tokioLogo}
+                            alt="Tokio logo"
+                        />
+                    </a>
+                </div>
+                <p>
+                    Code available upon request. Visualization not mine;
+                    screenshot from <a
+                        href="https://raft.github.io/"
+                        target="_blank"
+                        rel="noopener noreferrer">raft.github.io</a
+                    >, which uses <a
+                        href="https://github.com/ongardie/raftscope"
+                        target="_blank"
+                        rel="noopener noreferrer">ongardie/raftscope</a
+                    >.
+                </p>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="This site"
+                img={{
+                    src: siteImg,
+                    alt: "Recursively nesting screenshot of this very part of the site",
+                }}
+            >
+                <p>
+                    Pretty basic (as you can see). Mainly uses Astro, including
+                    some manual optimization features. Should be accessible, of
+                    course. CSS designed from scratch.
+                </p>
+                <p>
+                    Some WIP interactive content (for <a href="/stuff">/stuff</a
+                    >) being done in Svelte, working quite smoothly with Astro
+                    so far.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://astro.build"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={astroLogo}
+                            alt="Astro logo"
+                        />
+                    </a>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.typescriptlang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={tsLogo}
+                            alt="TypeScript logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Real-Time Physically Based Rendering (PBR) + GUI (classwork)"
+                img={{
+                    src: rtPbrImg1,
+                    alt: "Screenshot of a realistic 3D render of a revolver. The program has a panel for adjusting parameters.",
+                }}
+                attribution=`OpenGL® and the oval logo are trademarks or registered
+                    trademarks of Hewlett Packard Enterprise in the United
+                    States and/or other countries worldwide.`
+            >
+                <p>
+                    Final project for Computer Graphics, similar to many of the
+                    OpenGL PBR demos out there, with the addition of a UI for
+                    playing around with mixing materials, material properties,
+                    models, etc.
+                </p>
+                <div class="techs-used">
+                    <div class="tech-logo">
+                        <Image
+                            class="invert-dark"
+                            src={cppLogo}
+                            alt="C++ logo"
+                        />
+                    </div>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.opengl.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={openglLogo}
+                            alt="OpenGL logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
+                name="Secure Messaging Protocol (partner classwork)"
+                img={{
+                    src: netsecDesign,
+                    alt: `A design slide describing a protocol for client-client authentication and key establishment`,
+                    caption:
+                        "A slide from our design description. More slides available upon request.",
+                }}
+            >
+                <p>
+                    Design and implementation of a secure messaging system
+                    without the use of existing TLS functions, as well as
+                    analysis of the security properties of our and other teams'
+                    designs.
+                </p>
+                <p>
+                    Message content is sent P2P, while a central server is used
+                    for authentication and bootstrapping user discovery.
+                </p>
+                <p>
+                    An interesting detail was the issue of a malicious server
+                    possibly MitM-ing user-user key establishment, which we
+                    almost overlooked, and got a few other teams.
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.python.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={pythonLogo}
+                            alt="Python logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+        margin: 20px auto;
+    }
+
+    .techs-used {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 1em;
+    }
+
+    .tech-logo {
+        height: 2.5rem;
+        min-width: 2.5rem;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    #hat-icon {
+        height: 1em;
+        width: 1em;
+        scale: 170%;
+    }
+</style>

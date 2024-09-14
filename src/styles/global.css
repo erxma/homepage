@@ -1,0 +1,108 @@
+@import url(https://fonts.bunny.net/css?family=lato:100,100i,300,300i,400,400i,700,700i,900,900i);
+
+:root {
+    --text-default: black;
+    --outline-color: black;
+    --attribution-color: #444;
+    --caption-color: #666;
+    --card-bg-color: #eee;
+}
+
+html {
+    background-color: #ddd;
+    font-family: "Lato", sans-serif;
+    color: var(--text-default);
+}
+
+html.dark {
+    background-color: #0e0e0e;
+}
+
+body {
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100svh;
+    max-width: 60em;
+}
+
+p {
+    font-size: large;
+}
+
+a[href^="http"]:not(:has(img))::after {
+    content: "";
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.25em;
+    margin-right: 0.05em;
+    background-size: 100%;
+    background-image: url("/icons/external-link.svg");
+}
+
+a:link {
+    text-decoration-line: none;
+}
+
+a:hover {
+    text-decoration: underline 2px;
+    text-underline-offset: 5px;
+}
+
+.outline-box:hover {
+    outline: 2px solid var(--outline-color);
+    outline-offset: 2px;
+}
+
+.attribution {
+    font-size: small;
+    color: var(--attribution-color);
+}
+
+.img-caption {
+    color: var(--caption-color);
+    text-align: center;
+}
+
+.dark {
+    --text-default: #eee;
+    --outline-color: white;
+    --attribution-color: #aaa;
+    --caption-color: #ccc;
+    --card-bg-color: rgb(25, 25, 25);
+
+    a:link {
+        color: dodgerblue;
+    }
+
+    a:visited {
+        color: rgb(192, 98, 189)
+    }
+
+    .outline-box:hover {
+        outline-color: var(--outline-color);
+    }
+
+    .invert-dark {
+        filter: invert();
+    }
+
+    .dim-dark {
+        filter: brightness(75%);
+    }
+
+    a[href^="http"]:not(:has(img))::after {
+        filter: invert();
+    }
+}
+
+/* Hidden from graphical view but not screen readers */
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

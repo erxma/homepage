@@ -1,0 +1,35 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import "@styles/global.css";
+---
+
+<header>
+    <nav>
+        <a href="/">home</a>
+        <a href="/projects"> projects</a>
+        <a href="/stuff">stuff</a>
+    </nav>
+    <ThemeToggle />
+</header>
+
+<style>
+    nav,
+    nav a {
+        display: flex;
+        align-items: center;
+        column-gap: 1em;
+
+        font-size: large;
+        color: var(--text-default);
+    }
+    :global(.dark) nav a {
+        color: var(--text-default-dark);
+    }
+
+    header {
+        display: flex;
+        justify-content: right;
+        column-gap: 1em;
+        margin-bottom: 1em;
+    }
+</style>
