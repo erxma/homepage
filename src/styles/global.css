@@ -29,6 +29,8 @@ p {
     font-size: large;
 }
 
+/* Automatically add external link icon after links starting with http,
+except when containing an image. */
 a[href^="http"]:not(:has(img))::after {
     content: "";
     display: inline-block;
