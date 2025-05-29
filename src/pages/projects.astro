@@ -2,12 +2,14 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PortfolioItem from "@components/PortfolioItem.astro";
 import pbrtRender from "@assets/pbrt-render.png";
+import tminusImg from "@assets/t-minus.png";
 import raftscopeImg from "@assets/raftscope.png";
 import siteImg from "@assets/site.png";
 import rtPbrImg1 from "@assets/realtime-pbr-1.png";
 import netsecDesign from "@assets/netsec-project.png";
 import rustLogo from "@assets/logos/rust-logo.svg";
 import tokioLogo from "@assets/logos/tokio-logo.svg";
+import svelteLogo from "@assets/logos/svelte-logo.svg";
 import astroLogo from "@assets/logos/astro-icon-dark.svg";
 import tsLogo from "@assets/logos/ts-logo-128.svg";
 import openglLogo from "@assets/logos/opengl-logo.svg";
@@ -20,7 +22,7 @@ const pageTitle = "erxma - Portfolio";
 
 <BaseLayout pageTitle={pageTitle}>
     <h1>Projects</h1>
-    <ul role="list">
+    <ul class="project-list">
         <li>
             <PortfolioItem
                 name="Physically Based Rendering Raytracer"
@@ -87,6 +89,70 @@ const pageTitle = "erxma - Portfolio";
         </li>
         <li>
             <PortfolioItem
+                name="MBTA Live Status Viewer"
+                img={{
+                    src: tminusImg,
+                    alt: "A web interface allowing the user to pick a transit stop and see live arrival predictions",
+                }}
+            >
+                <p>
+                    A custom web interface for streaming realtime data from the
+                    MBTA transit system, written in Svelte 5. I've started out
+                    with the common use case of arrival predictions, but working
+                    to add more original analysis and presentations.
+                </p>
+
+                <p>Some notable features:</p>
+                <ul>
+                    <li>Partial server-side rendering (SSR) with SvelteKit</li>
+                    <li>
+                        Streaming server-sent events (SSE) for data
+                        adds/updates/removes
+                    </li>
+                    <li>API request proxying</li>
+                    <li>
+                        A JSON:API parser and client (I wasn't satisified with
+                        any of the existing libraries)
+                    </li>
+                    <li>Working out many nuances of GTFS logic...</li>
+                </ul>
+                <p>
+                    <a
+                        href="https://t-minus.netlify.app"
+                        target="_blank"
+                        rel="noopener noreferrer"><b>Try it here</b></a
+                    >
+                </p>
+                <div class="techs-used">
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://svelte.dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={svelteLogo}
+                            alt="Svelte logo"
+                        />
+                    </a>
+                    <a
+                        class="outline-box tech-logo"
+                        href="https://www.typescriptlang.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            class="invert-dark"
+                            src={tsLogo}
+                            alt="TypeScript logo"
+                        />
+                    </a>
+                </div>
+            </PortfolioItem>
+        </li>
+        <li>
+            <PortfolioItem
                 name="Raft distributed consensus algorithm implementation (classwork)"
                 img={{
                     src: raftscopeImg,
@@ -94,14 +160,14 @@ const pageTitle = "erxma - Portfolio";
                 }}
                 ,
                 attribution=`<a
-                    href="https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/"
-                    target="_blank"
-                    rel="noopener noreferrer">Rust logo</a
-                > owned by the Rust Foundation, licensed under <a
-                    href="https://creativecommons.org/licenses/by/4.0/"
-                    target="_blank"
-                    rel="noopener noreferrer">CC BY</a
-                >.`
+					href="https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/"
+					target="_blank"
+					rel="noopener noreferrer">Rust logo</a
+				> owned by the Rust Foundation, licensed under <a
+					href="https://creativecommons.org/licenses/by/4.0/"
+					target="_blank"
+					rel="noopener noreferrer">CC BY</a
+				>.`
             >
                 <p>
                     Implementation of the Raft algorithm, utilizing async I/O.
@@ -214,8 +280,8 @@ const pageTitle = "erxma - Portfolio";
                     alt: "Screenshot of a realistic 3D render of a revolver. The program has a panel for adjusting parameters.",
                 }}
                 attribution=`OpenGL® and the oval logo are trademarks or registered
-                    trademarks of Hewlett Packard Enterprise in the United
-                    States and/or other countries worldwide.`
+					trademarks of Hewlett Packard Enterprise in the United
+					States and/or other countries worldwide.`
             >
                 <p>
                     Final project for Computer Graphics, similar to many of the
@@ -291,11 +357,11 @@ const pageTitle = "erxma - Portfolio";
 </BaseLayout>
 
 <style>
-    ul {
+    .project-list {
         padding-left: 0;
     }
 
-    li {
+    .project-list > li {
         list-style: none;
         margin: 20px auto;
     }

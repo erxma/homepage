@@ -23,9 +23,8 @@ const { src: imgSrc, alt: imgAlt, caption: imgCaption, ...attrs } = img;
             {name}
         </h2>
         <slot />
-        {attribution && <p class="attribution" set:html={attribution} />}
     </div>
-
+    
     <div id="img-container">
         {
             typeof img.src === "string" ? (
@@ -36,6 +35,7 @@ const { src: imgSrc, alt: imgAlt, caption: imgCaption, ...attrs } = img;
         }
         {imgCaption && <p class="img-caption">{imgCaption}</p>}
     </div>
+    {attribution && <p class="attribution" set:html={attribution} />}
 </article>
 
 <style>

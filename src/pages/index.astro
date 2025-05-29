@@ -20,13 +20,22 @@ const pageTitle = "erxma";
 		<h1 id="title">&hellip; &hellip;</h1>
 
 		<div class="container">
-			<nav class="index-nav">
-				<a href="/projects">Projects</a>
+			<nav>
+				<div class="link-group">
+					<a href="/projects">Projects</a>
+					<a
+						href="https://github.com/erxma"
+						target="_blank"
+						rel="noopener noreferrer">GitHub</a
+					>
+				</div>
+				<div class="link-group">
 				<a
-					href="https://github.com/erxma"
+					href="https://t-minus.netlify.app"
 					target="_blank"
-					rel="noopener noreferrer">GitHub</a
+					rel="noopener noreferrer">MBTA Viewer (WIP)</a
 				>
+				</div>
 			</nav>
 		</div>
 	</body>
@@ -43,14 +52,14 @@ const pageTitle = "erxma";
 		justify-content: center;
 	}
 
-	.index-nav {
+	nav {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		row-gap: 2em;
+		align-items: center;
+		row-gap: 64px;
 	}
 
-	.index-nav a {
+	nav a {
 		font-size: x-large;
 		color: var(--text-default);
 		text-decoration: underline;
@@ -62,10 +71,17 @@ const pageTitle = "erxma";
 		color: var(--text-default-dark);
 	}
 
-	.index-nav a:hover,
-	.index-nav a:active {
+	nav a:hover,
+	nav a:active {
 		text-decoration-thickness: 0.2em;
 		text-underline-offset: 0.35em;
 		cursor: pointer;
+	}
+
+	.link-group {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 2em;
 	}
 </style>
